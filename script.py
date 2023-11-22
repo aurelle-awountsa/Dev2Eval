@@ -4,6 +4,7 @@ import shutil
 from pathlib import Path
 from tabulate import tabulate
 
+
 def parseFile(directory):
     """
         this function allows you to group file pdf, word file and another kind of extension file into a directory dedicated for
@@ -14,7 +15,7 @@ def parseFile(directory):
 
     """
     extensionsDoc = ('.doc', '.docx', '.pptx', '.txt', '.pdf')
-    extensionMedia = ('.png', '.jpeg','jpg', '.avi', '.mkv', '.mp4')
+    extensionMedia = ('.png', '.jpeg', 'jpg', '.avi', '.mkv', '.mp4')
     extensionSource = ('.zip', '.exe', '.7z', '.msi')
 
     docDirectory = os.path.join(directory, 'document')
@@ -50,55 +51,54 @@ def parseFile(directory):
             dest = os.path.join(sourceDirectory, file)
             shutil.move(src, dest)
 
- # Parcourir le dossier "documents" et compter les différentes extensions
+    # Parcourir le dossier "documents" et compter les différentes extensions
 
     documentFiles = os.listdir(docDirectory)
     nbrExtension = {}
     for file in documentFiles:
         fileExtension = os.path.splitext(file)[1].lower()
         nbrExtension[fileExtension] = nbrExtension.get(fileExtension, 0) + 1
-    #creation du tableau
+    # creation du tableau
     tableauDoc = [(extension, nombre) for extension, nombre in nbrExtension.items()]
 
     # Afficher le nombre de fichiers pour chaque extension différente
     print("Nombre de fichiers avec différentes extensions dans le dossier 'document':")
     headers = ["Extension", "Nombre de fichiers"]
 
-     #affichage du tableau
+    # affichage du tableau
     print(tabulate(tableauDoc, headers=headers, tablefmt="grid"))
 
-  # Parcourir le dossier "média" et compter les différentes extensions
+    # Parcourir le dossier "média" et compter les différentes extensions
     mediaFiles = os.listdir(mediaDirectory)
     nbrExtension = {}
     for file in mediaFiles:
-
         fileExtension = os.path.splitext(file)[1].lower()
         nbrExtension[fileExtension] = nbrExtension.get(fileExtension, 0) + 1
-    #creation du tableau
+    # creation du tableau
     tableauMedia = [(extension, nombre) for extension, nombre in nbrExtension.items()]
-
 
     # Afficher le nombre de fichiers pour chaque extension différente
     print("Nombre de fichiers avec différentes extensions dans le dossier 'média':")
     headers = ["Extension", "Nombre de fichiers"]
 
-    #affichage du tableau
+    # affichage du tableau
     print(tabulate(tableauMedia, headers=headers, tablefmt="grid"))
 
-# Parcourir le dossier "source" et compter les différentes extensions
+    # Parcourir le dossier "source" et compter les différentes extensions
     sourceFiles = os.listdir(sourceDirectory)
     nbrExtension = {}
     for file in sourceFiles:
         fileExtension = os.path.splitext(file)[1].lower()
         nbrExtension[fileExtension] = nbrExtension.get(fileExtension, 0) + 1
-    #creation du tableau
+    # creation du tableau
     tableauSource = [(extension, nombre) for extension, nombre in nbrExtension.items()]
 
     # Afficher le nombre de fichiers pour chaque extension différente
     print("Nombre de fichiers avec différentes extensions dans le dossier 'source':")
     headers = ["Extension", "Nombre de fichiers"]
-    #affichage du tableau
+    # affichage du tableau
     print(tabulate(tableauSource, headers=headers, tablefmt="grid"))
+
 
 if __name__ == '__main__':
     directory = Path.cwd()
