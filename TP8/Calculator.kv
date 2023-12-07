@@ -1,0 +1,54 @@
+CalculatorForm:
+    number1_input: number1
+    number2_input: number2
+    result_app: result
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        BoxLayout:
+            orientation : 'vertical'
+
+            TextInput:
+                id: number1
+                multiline: False
+                background_color: (145/205,150/255,122/255,1) if self.focus else (150/255,128/255,114/255,1)
+
+
+
+            TextInput:
+                id: number2
+                multiline: False
+                background_color: (100/250,150/255,122/255,1) if self.focus else (150/255,128/255,114/255,1)
+        Button:
+            text: 'Tapez ici'
+            on_press: root.buttonClicked(self)
+    BoxLayout:
+        orientation: 'horizontal'
+        CheckBox:
+            group:'addition'
+            on_active : root.on_checkbox_Active_add(self, self.active)
+        Label:
+            text:'Addition'
+
+        CheckBox:
+            group:'addition'
+            on_active :root.on_checkbox_Active_mul(self, self.active)
+        Label:
+            text:'Multiplication'
+
+        CheckBox:
+            group:'addition'
+            on_active : root.on_checkbox_Active_div(self,self.active)
+        Label:
+            text:'Division'
+
+        CheckBox:
+            group:'addition'
+            on_active : root.on_checkbox_Active_sous(self, self.active)
+        Label:
+            text:'Soustraction'
+
+    BoxLayout:
+        Label:
+            id: result
+
